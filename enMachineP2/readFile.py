@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import RandomOverSampler
+# from sklearn.neighbors import KNeighborsClassifier
 
 cols = ["fLength","fWidth", "fSize", "fConc",  "fConcl", "fAsym", "fM3Long", "fM3Trans", "fAlpha", "fDist", "class"]
 
@@ -29,9 +30,29 @@ for label in cols[:-1]:
 train, valid, test = np.split(df.sample(frac=1), [int(0.6*len(df)), int(0.8*len(df))])
 
 
+# def scale_dataset(dataframe, oversample=False):
+#     # x = dataframe[cols[:-1]].values
+#     x = dataframe[dataframe.columns[dataframe.columns.get_loc(cols[0]):dataframe.columns.get_loc(cols[-2]) + 1]].values
+#     y = dataframe[cols[-1]].values
+#
+#     scaler = StandardScaler()
+#     x = scaler.fit_transform(x)
+#
+#     if oversample:
+#         ros = RandomOverSampler()
+#         x, y = ros.fit_resample(x, y)
+#
+#     data = np.hstack((x,np.reshape(y,(-1, 1))))
+#
+#     return data, x, y
+
 def scale_dataset(dataframe, oversample=False):
-    x = dataframe[cols[:-1]].values
-    y = dataframe[cols[-1]].values
+    if isinstance(dataframe, pd.DataFrame):
+        x = dataframe[cols[:-1]].values
+        y = dataframe[cols[-1]].values
+    elif isinstance(dataframe, np.ndarray):
+        x = dataframe[:, :-1]
+        y = dataframe[:, -1]
 
     scaler = StandardScaler()
     x = scaler.fit_transform(x)
@@ -49,10 +70,13 @@ def scale_dataset(dataframe, oversample=False):
 
 train, x_train, y_train=scale_dataset(train, oversample=True)
 valid, x_valid, y_valid=scale_dataset(valid, oversample=True)
-test, x_test, y_test=scale_dataset(train, oversample=False)
+test, x_test, y_test=scale_dataset(test, oversample=False)
 
 len(y_train)
 
-sum(y_train==1)
+# sum(y_train==1)
+#
+# sum(y_train==0)
 
-sum(y_train==0)
+# knn_model = KNeighborsClassifier(n_neighbors=1)
+# knn_model.fit(x_train)
