@@ -52,4 +52,13 @@ array9 = np.arange(7,10,2)
 array10 = np.arange(12,20.2)
 
 array11 = np.concatenate((array9, array10))
+
 print(array11)
+
+array12= np.array([[5,6,7]])
+array13= np.array([[9,3,2],[12,6,9]])
+array14 = np.concatenate((array13, array12), axis=0)
+
+print(array14)
+
+print(array13.reshape(3,2))
