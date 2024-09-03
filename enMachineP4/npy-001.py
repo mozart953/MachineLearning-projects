@@ -62,3 +62,14 @@ array14 = np.concatenate((array13, array12), axis=0)
 print(array14)
 
 print(array13.reshape(3,2))
+
+array15= np.random.rand(10)
+array16=np.random.randint(0,10, size=10)
+array17 = np.random.randn(10)
+
+print("Numeros aleatorios")
+print(array15)
+print("Numeros enteros")
+print(array16)
+print("Numeros de la distribucion normal")
+print(array17)
