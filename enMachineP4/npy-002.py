@@ -74,3 +74,30 @@ print(paises2)
 
 paises3 = pd.DataFrame(datos, index=datos["nombre"], columns=["capital", "poblacion", "sup. en k2"])
 print(paises3)
+
+print(paises3.loc["Argentina"])
+
+print(paises3.loc[["Argentina", "Brazil"], ["capital", "poblacion"]])
+
+print(paises3.loc[:,["sup. en k2"]])
+
+print(paises3.capital)
+
+filtro44 = paises["sup. en k2"]>1000000
+
+print(paises.loc[filtro44])
+
+filtro45=paises.loc["Argentina","capital"]="Buenos Aies"
+
+print(filtro45)
+
+#filtrar la fila
+print(paises3.iloc[1])
+
+#filtrar por columna
+print(paises3.iloc[:,2])
+
+#filtro de la fila 2 y 3
+print(paises3.iloc[[2,3]])
+
+print(paises3.columns)
