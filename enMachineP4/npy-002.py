@@ -101,3 +101,39 @@ print(paises3.iloc[:,2])
 print(paises3.iloc[[2,3]])
 
 print(paises3.columns)
+
+print(paises3.poblacion.values)
+print(paises3.poblacion.name)
+
+#obteniendo el pais con la minima poblacion
+print(paises3.poblacion.min())
+
+#obtener el pais con la maxima poblacion
+print(paises3.poblacion.max())
+
+#Desviacion estandar de la columna poblacion
+print(paises3.poblacion.std())
+
+print(paises3[["poblacion", "capital"]])
+
+print(paises3.poblacion> 5000000)
+
+print(paises3.loc[paises3.poblacion> 50000000])
+
+paises3["pob. en millones"]= paises3.poblacion/1000000
+
+print(paises3)
+
+def millones(x):
+    return x/1000000
+
+paises3["pob. en millones"] = paises3.poblacion.apply(millones)
+
+print(paises3)
+
+def densidad(df):
+    return df["poblacion"]/df["sup. en k2"]
+
+paises3["densidad pob."]=paises3.apply(densidad, axis=1)
+
+print(paises3)
