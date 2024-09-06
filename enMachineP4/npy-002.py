@@ -137,3 +137,13 @@ def densidad(df):
 paises3["densidad pob."]=paises3.apply(densidad, axis=1)
 
 print(paises3)
+
+paises3.to_pickle('./pickle')
+
+pd.read_pickle('./pickle')
+
+paises3.to_csv('./csv')
+pd.read_csv('./csv')
+
+paises3.to_excel('./excel', sheet_name='Prueba', index_label='columna')
+pd.read_excel('./excel', index_col='columna')
